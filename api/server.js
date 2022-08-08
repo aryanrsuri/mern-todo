@@ -29,7 +29,7 @@ app.get("/todos", async (request, response) => {
 
 app.post("/todo/new", async (request, response) => {
   try {
-    const todo = await new Todo({
+    const todo = new Todo({
       text: request.body.text,
     });
 
@@ -49,7 +49,7 @@ app.delete("/todo/delete/:id", async (request, response) => {
   }
 });
 
-app.put("/todo/complete/:id", async (request, response) => {
+app.post("/todo/complete/:id", async (request, response) => {
   try {
     const todo = await Todo.findById(request.params.id);
     todo.completed = !todo.completed;
