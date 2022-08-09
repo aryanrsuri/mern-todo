@@ -23,13 +23,29 @@ function App() {
 
   const completeTodo = async (id) => {
     const url = api + "/todo/complete/" + id;
-    console.log(url);
-    const data = await fetch(url)
+    const data = await fetch(url, {
+      method: "POST",
+    })
       .then((result) => result.json())
       .catch((Error) => console.error(Error));
-    // const data = fetch(api + "/todo/complete", +id).then((result) =>
-    //   result.json()
-    // );
+
+    setTodos((todos) =>
+      todos.map((todo) => {
+        if (todo._id === data._id) {
+          todo.completed = data.completed;
+        }
+        return todo;
+      })
+    );
+  };
+
+  const deleteTodo = async (id) => {
+    const url = api + "/todo/delete/" + id;
+    const data = await fetch(url, {
+      method: "DELETE",
+    })
+      .then((result) => result.json())
+      .catch((Error) => console.error(Error));
 
     setTodos((todos) =>
       todos.map((todo) => {
@@ -55,7 +71,10 @@ function App() {
             >
               <div className="checkbox"></div>
               <div className="text">{todo.text}</div>
-              <div className="delete"></div>
+              <div
+                onClick={() => deleteTodo(todo._id)}
+                className="delete"
+              ></div>
             </div>
           ))}
         </div>
