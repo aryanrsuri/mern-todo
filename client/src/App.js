@@ -44,39 +44,49 @@ function App() {
     const data = await fetch(url, {
       method: "DELETE",
     })
-      .then((result) => result.json())
+      .then((result) => {
+        result.json();
+      })
       .catch((Error) => console.error(Error));
 
-    setTodos((todos) =>
-      todos.map((todo) => {
-        if (todo._id === data._id) {
-          todo.completed = data.completed;
-        }
-        return todo;
-      })
-    );
+    // setTodos((todos) =>
+    //   todos.map((todo) => {
+    //     if (todo._id === data._id) {
+    //       todo.completed = data.completed;
+    //     }
+    //     return todo;
+    //   })
+    // );
   };
 
   return (
     <div className="App">
-      <h1> Polestar.sh </h1>
-
+      <div className="header">
+        <div className="icon"></div>
+        <h1> Polestar.sh </h1>
+      </div>
       <main className="main">
         <div className="todos">
           {todos.map((todo) => (
             <div
               className={"todo" + (todo.completed ? " completed" : "")}
               key={todo._id}
-              onClick={() => completeTodo(todo._id)}
             >
-              <div className="checkbox"></div>
-              <div className="text">{todo.text}</div>
-              <div
-                onClick={() => deleteTodo(todo._id)}
-                className="delete"
-              ></div>
+              <div onClick={() => deleteTodo(todo._id)} className="delete">
+                &#8600;
+              </div>
+              <div onClick={() => completeTodo(todo._id)} className="text">
+                {todo.text}
+              </div>
             </div>
           ))}
+        </div>
+
+        <div className="new">
+          <div onClick={() => console.log()} className="button">
+            &#x2197;
+          </div>
+          <input className="newText" type="text" />
         </div>
       </main>
     </div>
