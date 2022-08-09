@@ -44,18 +44,35 @@ function App() {
     const data = await fetch(url, {
       method: "DELETE",
     })
-      .then((result) => {
-        result.json();
-      })
+      .then((result) => result.json())
       .catch((Error) => console.error(Error));
 
     setTodos((todos) => todos.filter((todo) => todo._id !== id));
   };
 
+  const addTodo = async () => {
+    if (newTodo === "") {
+      return;
+    }
+    const data = await fetch(api + "/todo/new", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: newTodo,
+      }),
+    })
+      .then((result) => result.json())
+      .catch((Error) => console.error(Error));
+
+    setTodos((todos) => [...todos, data]);
+    setNewTodo("");
+  };
   return (
     <div className="App">
       <div className="header">
-        <div className="icon"></div>
+        <div className="i icon">&#x3c;</div>
         <h1> Polestar.sh </h1>
       </div>
       <main className="main">
@@ -65,7 +82,7 @@ function App() {
               className={"todo" + (todo.completed ? " completed" : "")}
               key={todo._id}
             >
-              <div onClick={() => deleteTodo(todo._id)} className="delete">
+              <div onClick={() => deleteTodo(todo._id)} className="i delete">
                 &#8600;
               </div>
               <div onClick={() => completeTodo(todo._id)} className="text">
@@ -76,7 +93,7 @@ function App() {
         </div>
 
         <div className="new">
-          <div onClick={addTodo} className="button">
+          <div onClick={addTodo} className="i button">
             &#x2197;
           </div>
           <input

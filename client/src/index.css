@@ -29,10 +29,9 @@ body {
 }
 
 .header .icon {
-  width: 1.2rem;
-  height: 1.2rem;
-  padding: 1rem;
-  background-color: yellowgreen;
+  font-size: 2rem;
+  background-color: rgb(210, 104, 239);
+  color: rgb(0, 0, 0);
 }
 
 h1 {
@@ -42,6 +41,10 @@ h1 {
 .main {
   padding: 1rem;
   font-weight: 500;
+
+  max-width: 500px;
+  /* font wrap */
+  word-wrap: break-word;
 }
 .todo {
   position: relative;
@@ -64,15 +67,7 @@ h1 {
 }
 
 .todo .delete {
-  width: 1.2rem;
-  height: 1.2rem;
-  padding: 1rem;
-  color: inherit;
   background-color: rgb(220, 74, 74);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .todo.completed {
@@ -90,16 +85,7 @@ h1 {
 }
 
 .new .button {
-  font-size: 1.2rem;
-  width: 1.2rem;
-  height: 1.2rem;
-  padding: 1rem;
-  color: inherit;
   background-color: rgb(73, 114, 238);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .new .button:hover {
@@ -113,8 +99,24 @@ h1 {
   border-bottom: 1px solid black;
   background: none;
   font-size: inherit;
+  font-weight: inherit;
+  margin-right: 1rem;
 }
 
 .newText:focus-visible {
   outline: none !important;
+}
+
+.i {
+  color: inherit;
+
+  font-weight: 800;
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
