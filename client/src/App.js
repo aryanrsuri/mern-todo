@@ -76,10 +76,15 @@ function App() {
         </div>
 
         <div className="new">
-          <div onClick={() => console.log()} className="button">
+          <div onClick={addTodo} className="button">
             &#x2197;
           </div>
-          <input className="newText" type="text" />
+          <input
+            className="newText"
+            type="text"
+            value={newTodo}
+            onChange={(e) => setNewTodo(e.target.value)}
+          />
         </div>
       </main>
     </div>
