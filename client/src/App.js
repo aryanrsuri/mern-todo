@@ -49,14 +49,7 @@ function App() {
       })
       .catch((Error) => console.error(Error));
 
-    // setTodos((todos) =>
-    //   todos.map((todo) => {
-    //     if (todo._id === data._id) {
-    //       todo.completed = data.completed;
-    //     }
-    //     return todo;
-    //   })
-    // );
+    setTodos((todos) => todos.filter((todo) => todo._id !== id));
   };
 
   return (
